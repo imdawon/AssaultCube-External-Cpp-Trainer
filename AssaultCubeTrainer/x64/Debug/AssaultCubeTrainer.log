@@ -1,10 +1,2 @@
-﻿  AssaultCubeTrainer.cpp
-  Proc.cpp
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\AssaultCubeTrainer\Proc.cpp(3,42): error C2601: 'GetProcId': local function definitions are illegal
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\AssaultCubeTrainer\Proc.h(9): message : this line contains a '{' which has not yet been matched
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\AssaultCubeTrainer\Proc.cpp(26,70): error C2601: 'GetModuleBaseAddress': local function definitions are illegal
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\AssaultCubeTrainer\Proc.h(9): message : this line contains a '{' which has not yet been matched
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\AssaultCubeTrainer\Proc.cpp(47,87): error C2601: 'findDMAAddy': local function definitions are illegal
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\AssaultCubeTrainer\Proc.h(9): message : this line contains a '{' which has not yet been matched
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\AssaultCubeTrainer\Proc.h(9): fatal error C1075: '{': no matching token found
-  Generating Code...
+﻿AssaultCubeTrainer.obj : error LNK2019: unresolved external symbol "unsigned __int64 __cdecl FindDMAAddy(void *,unsigned __int64,class std::vector<unsigned int,class std::allocator<unsigned int> >)" (?FindDMAAddy@@YA_KPEAX_KV?$vector@IV?$allocator@I@std@@@std@@@Z) referenced in function main
+C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\x64\Debug\AssaultCubeTrainer.exe : fatal error LNK1120: 1 unresolved externals

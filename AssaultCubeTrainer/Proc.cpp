@@ -36,7 +36,7 @@ uintptr_t GetModuleBaseAddress(DWORD procId, const wchar_t* modName) {
 				if (!_wcsicmp(modEntry.szModule, modName)) {
 					modBaseAddr = (uintptr_t)modEntry.modBaseAddr;
 					break;
-				} 
+				}
 			} while (Module32Next(hSnap, &modEntry));
 		}
 	}
