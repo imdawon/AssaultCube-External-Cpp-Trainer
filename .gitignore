@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# My ignores
+AssaultCubeTrainer/Debug/
+AssaultCubeTrainer/Release/
+AssaultCubeTrainer/Debug/x64
+
 # User-specific files
 *.rsuser
 *.suo
@@ -18,6 +23,9 @@ mono_crash.*
 
 # Build results
 [Dd]ebug/
+Debug
+Release
+x64
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
