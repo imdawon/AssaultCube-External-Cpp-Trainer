@@ -1,4 +1,4 @@
-# AssaultCube-External-C++-Trainer
+# AssaultCube External C++ Trainer
 
 ## How to use:
 * Install Assault Cube: https://assault.cubers.net/
