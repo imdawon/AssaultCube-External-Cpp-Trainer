@@ -1,5 +1,9 @@
 # AssaultCube-External-C++-Trainer
 
+## How to use:
+* Install Assault Cube: https://assault.cubers.net/
+* Open the project in VS 2019 Community and run the code
+
 ## Motivation
 After completing the bootcamp, I wanted to have a project that was entirely built by me, from the ground up, with no guidelines or rubrics. 
 
