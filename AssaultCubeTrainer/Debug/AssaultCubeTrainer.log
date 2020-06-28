@@ -1,1 +1,5 @@
-﻿  AssaultCubeTrainer.vcxproj -> C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\Debug\AssaultCubeTrainer.exe
+﻿  AssaultCubeTrainer.cpp
+  mem.cpp
+  Proc.cpp
+  Generating Code...
+  AssaultCubeTrainer.vcxproj -> C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\Debug\AssaultCubeTrainer.exe

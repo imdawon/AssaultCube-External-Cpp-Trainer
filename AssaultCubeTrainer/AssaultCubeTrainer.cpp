@@ -4,46 +4,93 @@
 #include <vector>
 #include <Windows.h>
 #include "proc.h"
+#include "mem.h"
 
 int main()
 {
-    //Get ProcId of the target process
-    DWORD procId = GetProcId(L"ac_client.exe");
+	HANDLE hProcess = 0;
 
-    //Getmodulebaseaddress
-    uintptr_t moduleBase = GetModuleBaseAddress(procId, L"ac_client.exe");
+	uintptr_t moduleBase = 0, localPlayerPtr = 0, healthAddr = 0;
+	bool bHealth = false, bAmmo = false, bRecoil = false;
 
-    //Get Handle to Process
-    HANDLE hProcess = 0;
-    hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
+	const int newValue = 1337;
 
-    //Resolve base address of the pointer chain
-    uintptr_t dynamicPtrBaseAddr = moduleBase + 0x10f4f4;
+	// get the game's process id
+	DWORD procId = GetProcId(L"ac_client.exe");
 
-    std::cout << "DynamicPtrBaseAddr = " << "0x" << std::hex << dynamicPtrBaseAddr << std::endl;
+	// If the game's process ID is found
+	// Process all access to access and modify game data
+	// Calc modulebaseaddress of the game
+	// add relative offset to local player pointer
+	// use findmaaddy to process multi level pointer and get actual dynamic address of health address
+	if (procId) {
+		hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
 
-    //Resolve our ammo pointer chain
-    std::vector<unsigned int> ammoOffsets = { 0x374, 0x14, 0x0 };
-    uintptr_t ammoAddr = findDMAAddy(hProcess, dynamicPtrBaseAddr, ammoOffsets);
+		moduleBase = GetModuleBaseAddress(procId, L"ac_client.exe");
 
-    std::cout << "ammoAddr = " << "0x" << std::hex << ammoAddr << std::endl;
+		localPlayerPtr = moduleBase + 0x10f4f4;
 
-    //Read Ammo value
-    int ammoValue = 0;
+		healthAddr = FindDMAAddy(hProcess, localPlayerPtr, { 0xf8 });
+	}
+	else {
+		std::cout << "Process not found, press enter to exit\n";
+		getchar();
+		return 0;
+	}
 
-    ReadProcessMemory(hProcess, (BYTE*)ammoAddr, &ammoValue, sizeof(ammoValue), nullptr);
-    std::cout << "Curent ammo = " << std::dec << ammoValue << std::endl;
+	DWORD dwExit = 0;
 
-    //Write to it
-    int newAmmo = 1337;
-    WriteProcessMemory(hProcess, (BYTE*)ammoAddr, &newAmmo, sizeof(newAmmo), nullptr);
+	// check if the game is still running
+	// if so, continue to check for user input
+	while (GetExitCodeProcess(hProcess, &dwExit) && dwExit == STILL_ACTIVE) {
 
-    //Read out again
-    ReadProcessMemory(hProcess, (BYTE*)ammoAddr, &ammoValue, sizeof(ammoValue), nullptr);
+		// Toggle Health
+		if (GetAsyncKeyState(VK_NUMPAD1) & 1) {
+			bHealth = !bHealth;
+		}
 
-    std::cout << "New ammo = " << std::dec << ammoValue << std::endl;
+		// Toggle Ammo
+		if (GetAsyncKeyState(VK_NUMPAD2) & 1) {
+			bAmmo = !bAmmo;
 
-    getchar();
+			if (bAmmo) {
+				// ff 06 = inc [esi]
+				mem::PatchEx((BYTE*)(moduleBase + 0x637e9), (BYTE*)"\xFF\x06", 2, hProcess);
+			}
+			else {
+				//ff 0E = dec [esi]
+				mem::PatchEx((BYTE*)(moduleBase + 0x637e9), (BYTE*)"\xFF\x0E", 2, hProcess);
+			}
+		}
 
-    return 0;
+		// Toggle Recoil
+		if (GetAsyncKeyState(VK_NUMPAD3) & 1) {
+			bRecoil = !bRecoil;
+
+			if (bRecoil) {
+				mem::NopEx((BYTE*)(moduleBase + 0x63786), 10, hProcess);
+			}
+			else {
+				mem::PatchEx((BYTE*)(moduleBase + 0x63786), (BYTE*)"\x50\x8d\x4c\x24\x1c\x51\x8b\xce\xff\xd2", 10, hProcess);
+			}
+		}
+
+		// Exit Trainer
+		if (GetAsyncKeyState(VK_INSERT) & 1) {
+			return 0;
+		}
+
+		// continuous write of new desired values
+
+		if (bHealth) {
+		mem::PatchEx((BYTE*)healthAddr, (BYTE*)&newValue, sizeof(newValue), hProcess);
+		}
+
+		// Wait 15 ms between writes
+		Sleep(15);
+	}
+
+	std::cout << "Process not found! Press enter to exit!";
+	getchar();
+	return 0;
 }
