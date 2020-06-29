@@ -19,6 +19,9 @@
     <Filter Include="mem">
       <UniqueIdentifier>{510bf1e0-897c-4d96-bc62-1c538e2d86fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="console">
+      <UniqueIdentifier>{e6f76f15-ecde-430b-898a-711e56c178b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssaultCubeTrainer.cpp">
@@ -37,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="mem.h">
       <Filter>mem</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>console</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

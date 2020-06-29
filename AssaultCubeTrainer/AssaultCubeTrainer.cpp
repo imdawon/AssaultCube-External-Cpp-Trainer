@@ -5,6 +5,8 @@
 #include <Windows.h>
 #include "proc.h"
 #include "mem.h"
+#include "console.h""
+
 
 int main()
 {
@@ -49,7 +51,6 @@ int main()
 
 		// Print to console the current hacks and if they are enabled
 		std::cout << enabledHealth << enabledAmmo << enabledRecoilHack;
-		system("cls");
 
 		// Ternary operators to set the menu text to show if the hacks are enabled or not
 		(bHealth) ?
@@ -108,7 +109,9 @@ int main()
 		}
 
 		// Wait 15 ms between writes
-		Sleep(15);
+		Sleep(25);
+		// Clear console contents
+		clear();
 	}
 
 	std::cout << "Process not found! Press enter to exit!";
