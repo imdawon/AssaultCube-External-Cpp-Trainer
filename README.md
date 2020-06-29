@@ -8,7 +8,13 @@
 * Press NUMPAD 3 to toggle recoil
 * Press ENTER to exit
 
+
 ![project demo](projectdemo.gif]
+=======
+## Features
+* "Freeze" health at 1337 by writing to the memory address that holds the health value every 25ms
+* Instruct the game to increment ammo, rather than decrement, when a firearm is discharged
+* Nop the recoil instruction to be able to shoot without recoil
 
 ## Motivation
 After completing the bootcamp, I wanted to have a project that was entirely built by me, from the ground up, with no guidelines or rubrics. 
