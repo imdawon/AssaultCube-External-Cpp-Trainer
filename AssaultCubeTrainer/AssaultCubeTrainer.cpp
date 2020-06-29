@@ -8,6 +8,7 @@
 
 int main()
 {
+
 	HANDLE hProcess = 0;
 
 	uintptr_t moduleBase = 0, localPlayerPtr = 0, healthAddr = 0;
@@ -33,20 +34,42 @@ int main()
 		healthAddr = FindDMAAddy(hProcess, localPlayerPtr, { 0xf8 });
 	}
 	else {
-		std::cout << "Process not found, press enter to exit\n";
 		getchar();
 		return 0;
 	}
 
 	DWORD dwExit = 0;
 
+	// Declare initial hack menu values
+	std::string enabledHealth = "[1] Health Hack | ";
+	std::string enabledAmmo = "[2] Infinite Ammo | ";
+	std::string enabledRecoilHack = "[3] No Recoil";
+
 	// check if the game is still running
 	// if so, continue to check for user input
 	while (GetExitCodeProcess(hProcess, &dwExit) && dwExit == STILL_ACTIVE) {
 
+		// Print to console the current hacks and if they are enabled
+		std::cout << enabledHealth << enabledAmmo << enabledRecoilHack;
+		system("cls");
+
+		// Ternary operators to set the menu text to show if the hacks are enabled or not
+		(bHealth) ?
+			enabledHealth = "[1] Health Hack: ENABLED | " :
+			enabledHealth = "[1] Health Hack | ";
+
+		(bAmmo) ?
+			enabledAmmo = "[2] Infinite Ammo: ENABLED | " :
+			enabledAmmo = "[2] Infinite Ammo | ";
+
+		(bRecoil) ?
+			enabledRecoilHack = "[3] No Recoil: ENABLED" :
+			enabledRecoilHack = "[3] No Recoil";
+		
 		// Toggle Health
 		if (GetAsyncKeyState(VK_NUMPAD1) & 1) {
 			bHealth = !bHealth;
+			std::cout << "Health hack: ON";
 		}
 
 		// Toggle Ammo
