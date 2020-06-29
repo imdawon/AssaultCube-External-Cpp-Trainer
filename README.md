@@ -9,7 +9,7 @@
 * Press ENTER to exit
 
 
-![project demo](projectdemo.gif]
+![project demo](projectdemo.gif)
 
 ## Features
 * "Freeze" health at 1337 by writing to the memory address that holds the health value every 25ms
