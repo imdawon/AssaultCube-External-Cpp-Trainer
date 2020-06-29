@@ -8,6 +8,8 @@
 * Press NUMPAD 3 to toggle recoil
 * Press ENTER to exit
 
+![project demo](projectdemo.gif]
+
 ## Motivation
 After completing the bootcamp, I wanted to have a project that was entirely built by me, from the ground up, with no guidelines or rubrics. 
 
