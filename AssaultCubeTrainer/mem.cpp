@@ -1,5 +1,7 @@
 #include "mem.h"
 
+// Update an instruction in memory
+// Used to patch health value and to increment ammo value
 void mem::PatchEx(BYTE* dst, BYTE* src, unsigned int size, HANDLE hProcess)
 {
 	DWORD oldprotect;
@@ -8,6 +10,8 @@ void mem::PatchEx(BYTE* dst, BYTE* src, unsigned int size, HANDLE hProcess)
 	VirtualProtectEx(hProcess, dst, size, oldprotect, &oldprotect);
 }
 
+// Cancel an instruction in memory
+// Used to remove recoil
 void mem::NopEx(BYTE* dst, unsigned int size, HANDLE hProcess)
 {
 	BYTE* nopArray = new BYTE[size];
