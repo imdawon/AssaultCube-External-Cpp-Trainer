@@ -10,7 +10,7 @@
 
 
 ![project demo](projectdemo.gif]
-=======
+
 ## Features
 * "Freeze" health at 1337 by writing to the memory address that holds the health value every 25ms
 * Instruct the game to increment ammo, rather than decrement, when a firearm is discharged
