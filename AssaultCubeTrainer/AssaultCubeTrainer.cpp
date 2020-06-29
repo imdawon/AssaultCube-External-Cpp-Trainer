@@ -41,9 +41,7 @@ int main()
 	DWORD dwExit = 0;
 
 	// Declare initial hack menu values
-	std::string enabledHealth = "[1] Health Hack | ";
-	std::string enabledAmmo = "[2] Infinite Ammo | ";
-	std::string enabledRecoilHack = "[3] No Recoil";
+	std::string enabledHealth = "[1] Health Hack | ", enabledAmmo = "[2] Infinite Ammo | ", enabledRecoilHack = "[3] No Recoil";
 
 	// check if the game is still running
 	// if so, continue to check for user input
