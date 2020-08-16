@@ -2,7 +2,8 @@
 
 ## How to use:
 * Install Assault Cube: https://assault.cubers.net/
-* Open the project in VS 2019 Community and run the code
+* Clone this repo
+* Open the local repo in VS 2019 Community and run the code
 * Press NUMPAD 1 to set health to 1337
 * Press NUMPAD 2 to tell game to increment ammo when fired
 * Press NUMPAD 3 to toggle recoil
