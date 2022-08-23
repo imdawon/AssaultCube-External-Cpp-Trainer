@@ -1,2 +1,0 @@
-﻿AssaultCubeTrainer.obj : error LNK2019: unresolved external symbol "unsigned __int64 __cdecl FindDMAAddy(void *,unsigned __int64,class std::vector<unsigned int,class std::allocator<unsigned int> >)" (?FindDMAAddy@@YA_KPEAX_KV?$vector@IV?$allocator@I@std@@@std@@@Z) referenced in function main
-C:\Users\Dawon\source\repos\AssaultCube-External-C-Trainer\x64\Debug\AssaultCubeTrainer.exe : fatal error LNK1120: 1 unresolved externals
